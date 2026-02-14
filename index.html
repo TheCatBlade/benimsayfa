@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ata - Dijital Eğitim Kütüphanesi</title>
+    <title>Ata - Akademik Bilgi Bankası</title>
     <style>
         :root {
-            --bg-color: #f1f5f9;
+            --bg-color: #f8fafc;
             --text-color: #0f172a;
-            --accent-color: #3b82f6;
+            --accent-color: #2563eb;
             --card-bg: #ffffff;
             --header-bg: #1e293b;
-            --formula-bg: #fff1f2;
+            --formula-bg: #eff6ff;
         }
 
         body {
-            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Inter', system-ui, sans-serif;
             margin: 0; padding: 0;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         header {
             background: linear-gradient(135deg, var(--header-bg), #0f172a);
-            color: white; padding: 50px 20px; text-align: center;
+            color: white; padding: 40px 20px; text-align: center;
         }
 
         .top-controls {
@@ -33,8 +33,8 @@
         }
 
         .version-tag {
-            background: rgba(0, 0, 0, 0.85); color: #4ade80;
-            padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-family: monospace;
+            background: rgba(0, 0, 0, 0.8); color: #4ade80;
+            padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-family: monospace;
         }
 
         .menu-icon {
@@ -54,52 +54,50 @@
             color: #cbd5e1; display: block; cursor: pointer;
         }
 
-        .sidenav a:hover { color: white; background: rgba(255,255,255,0.1); }
-
-        .container { max-width: 900px; margin: -30px auto 50px; padding: 0 20px; }
+        .container { max-width: 1000px; margin: -20px auto 50px; padding: 0 20px; }
+        
         .card {
-            background: var(--card-bg); padding: 30px; border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin-bottom: 20px;
+            background: var(--card-bg); padding: 25px; border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-bottom: 20px;
         }
 
         .hidden { display: none; }
 
         .btn-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px; margin-top: 20px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px; margin-top: 20px;
         }
 
         .nav-btn {
             background: var(--accent-color); color: white; border: none;
-            padding: 16px; border-radius: 12px; cursor: pointer;
-            font-weight: 600; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 14px; border-radius: 12px; cursor: pointer;
+            font-weight: 600; transition: 0.2s;
         }
 
-        .nav-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 15px rgba(59, 130, 246, 0.4); }
+        .nav-btn:hover { background: #1d4ed8; transform: translateY(-2px); }
 
         .flashcard {
-            background: #fff; border-left: 6px solid var(--accent-color);
-            padding: 20px; margin: 15px 0; border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02); border-right: 1px solid #eee; border-top: 1px solid #eee;
+            background: #fff; border-left: 5px solid var(--accent-color);
+            padding: 18px; margin: 12px 0; border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03); border-right: 1px solid #f1f5f9;
         }
 
-        .flashcard h4 { margin: 0 0 10px 0; color: #1e40af; font-size: 1.1rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;}
+        .flashcard h4 { margin: 0 0 8px 0; color: #1e40af; font-size: 1rem; }
+        
         .formula {
-            display: block; background: var(--formula-bg); padding: 12px;
-            border-radius: 8px; font-family: 'Courier New', monospace; color: #991b1b;
-            margin-top: 10px; border: 1px dashed #fca5a5; font-weight: bold;
+            display: block; background: var(--formula-bg); padding: 10px;
+            border-radius: 6px; font-family: 'Courier New', monospace; color: #1d4ed8;
+            margin-top: 8px; border: 1px dashed #bfdbfe; font-weight: bold; font-size: 0.9rem;
         }
 
-        .modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(4px); }
-        .modal-content { background: white; margin: 5% auto; padding: 25px; width: 85%; max-width: 700px; border-radius: 15px; max-height: 80vh; overflow-y: auto; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { border-bottom: 1px solid #e2e8f0; padding: 12px; text-align: left; }
+        .modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
+        .modal-content { background: white; margin: 5% auto; padding: 20px; width: 90%; max-width: 600px; border-radius: 12px; }
     </style>
 </head>
 <body>
 
     <div class="top-controls">
-        <span class="version-tag">v1.5.0</span>
+        <span class="version-tag">v1.6.0</span>
         <div class="menu-icon" onclick="openNav()">&#9776;</div>
     </div>
 
@@ -107,19 +105,19 @@
         <a href="javascript:void(0)" style="font-size:30px" onclick="closeNav()">&times;</a>
         <a onclick="showSection('home')">🏠 Ana Sayfa</a>
         <a onclick="showSection('lessons')">📚 Ders Notları</a>
-        <a onclick="openLogModal()">📜 Sürüm Günlüğü</a>
+        <a onclick="openLogModal()">📜 Sürüm Logu</a>
     </div>
 
     <header>
-        <h1>Ata'nın Kütüphanesi</h1>
-        <p>LGS • 9. Sınıf • YKS Hazırlık</p>
+        <h1>Ata'nın Bilgi Bankası</h1>
+        <p>LGS, YKS ve Okul Dersleri Özet Sistemi</p>
     </header>
 
     <div class="container">
         <div id="home-section">
             <div class="card">
-                <h2>Dijital Çalışma Alanına Hoş Geldin!</h2>
-                <p>Ben Ata. 2011 doğumluyum. Bu platformda okul hayatım boyunca öğrendiğim en kritik bilgileri, formülleri ve özetleri düzenli bir şekilde saklıyorum. Sınıf düzeyini seçerek çalışmaya başlayabilirsin.</p>
+                <h2>Hoş Geldin Ata!</h2>
+                <p>Müfredata uygun, OGM Materyal uyumlu kısa notlar ve formüller burada toplanmıştır.</p>
             </div>
         </div>
 
@@ -128,13 +126,13 @@
                 <h2 id="view-title">Sınıf Seçiniz</h2>
                 <div id="grade-div" class="btn-grid">
                     <button class="nav-btn" onclick="navToSubject(8)">8. Sınıf (LGS)</button>
-                    <button class="nav-btn" onclick="navToSubject(9)">9. Sınıf (Lise Giriş)</button>
-                    <button class="nav-btn" onclick="navToSubject(12)">12. Sınıf (YKS/AYT)</button>
+                    <button class="nav-btn" onclick="navToSubject(9)">9. Sınıf (Temel)</button>
+                    <button class="nav-btn" onclick="navToSubject(12)">12. Sınıf (YKS)</button>
                 </div>
                 <div id="subject-div" class="btn-grid hidden"></div>
                 <div id="topic-div" class="btn-grid hidden"></div>
                 <div id="flashcard-div" class="hidden"></div>
-                <button id="back-btn" class="nav-btn hidden" style="margin-top:20px; background:#64748b;" onclick="goBack()">⬅ Geri Dön</button>
+                <button id="back-btn" class="nav-btn hidden" style="margin-top:20px; background:#475569;" onclick="goBack()">⬅ Geri Dön</button>
             </div>
         </div>
     </div>
@@ -143,12 +141,7 @@
         <div class="modal-content">
             <span style="float:right; cursor:pointer; font-size:24px" onclick="closeLogModal()">&times;</span>
             <h2>Sürüm Notları</h2>
-            <table>
-                <tr><th>Ver</th><th>Geliştirme</th></tr>
-                <tr><td>v1.5.0</td><td>8. Sınıf (LGS) ve 12. Sınıf (AYT) içerikleri OGM uyumlu eklendi.</td></tr>
-                <tr><td>v1.4.0</td><td>9. Sınıf tüm ana dersler (Fizik, Kimya, Biyo vb.) detaylandırıldı.</td></tr>
-                <tr><td>v1.3.0</td><td>Ünite ve Konu bazlı hiyerarşik yapıya geçildi.</td></tr>
-            </table>
+            <p><strong>v1.6.0:</strong> Kapsamlı içerik güncellemesi. 8, 9 ve 12. sınıf ders ve üniteleri eklendi.</p>
         </div>
     </div>
 
@@ -156,99 +149,44 @@
         let step = 'grade';
         let selGrade, selSub, selTopic;
 
-        // --- DEVASA MÜFREDAT VERİ SETİ ---
         const db = {
             8: {
-                "Matematik": {
-                    "Çarpanlar ve Katlar": [
-                        {t:"Asal Sayılar", d:"Sadece 1'e ve kendisine bölünebilen 1'den büyük sayılar. En küçük asal sayı 2'dir."},
-                        {t:"EBOB", d:"En Büyük Ortak Bölen. İki sayıyı da bölen en büyük sayıdır.", f:"EBOB(24, 36) = 12"},
-                        {t:"EKOK", d:"En Küçük Ortak Kat. Sayıların buluştuğu ilk kat.", f:"EKOK(4, 6) = 12"},
-                        {t:"Aralarında Asal", d:"1'den başka ortak böleni olmayan sayılar. EBOB'ları daima 1'dir."}
-                    ],
-                    "Üslü İfadeler": [
-                        {t:"Negatif Üst", d:"Sayının çarpmaya göre tersini alır (Takla attırır).", f:"a^-n = 1 / a^n"},
-                        {t:"Üssün Üssü", d:"Üstler birbiriyle çarpılır.", f:"(a^n)^m = a^(n.m)"},
-                        {t:"Bilimsel Gösterim", d:"1 ≤ |a| < 10 olmak üzere a.10^n şeklinde yazım.", f:"Örn: 0,0005 = 5.10^-4"}
-                    ]
-                },
-                "Fen Bilimleri": {
-                    "Mevsimler ve İklim": [
-                        {t:"Eksen Eğikliği", d:"Dünya'nın ekseni 23° 27' eğiktir. Mevsimlerin oluşma sebebidir."},
-                        {t:"Gün Dönümleri", d:"21 Haziran (KYY Yaz) ve 21 Aralık (KYY Kış)."},
-                        {t:"Ekinoks", d:"Gece ve gündüzün eşitliği (21 Mart, 23 Eylül)."}
-                    ],
-                    "DNA ve Genetik Kod": [
-                        {t:"Nükleotid", d:"DNA'nın en küçük yapı birimidir. Şeker, Fosfat ve Organik Bazdan oluşur."},
-                        {t:"Sıralama", d:"Karmaşıktan basite: KROMOZOM > DNA > GEN > NÜKLEOTİD (KediGen)"},
-                        {t:"Eşleşme", d:"Adenin - Timin | Guanin - Sitozin"}
-                    ]
-                }
+                "Türkçe (LGS)": { "Fiilimsiler": [{t:"İsim Fiil", d:"-ma, -ış, -mak ekleri."}, {t:"Sıfat Fiil", d:"-an, -ası, -mez, -ar, -dik, -ecek, -miş ekleri."}], "Cümle Ögeleri": [{t:"Özne", d:"Yükleme 'Kim/Ne' sorusu sorulur."}, {t:"Nesne", d:"'Neyi/Kimi' (Belirtili), 'Ne' (Belirtisiz)."}] },
+                "Matematik (LGS)": { "Üslü Sayılar": [{t:"Çarpma", d:"Tabanlar aynıysa üsler toplanır.", f:"a^x . a^y = a^(x+y)"}], "Köklü Sayılar": [{t:"Kök Dışı", d:"Tam kare sayılar çıkar.", f:"√64 = 8"}] },
+                "Fen Bilimleri": { "DNA ve Genetik Kod": [{t:"Gen", d:"Kalıtsal özellik taşıyan parça."}, {t:"Nükleotid", d:"Şeker + Fosfat + Baz."}], "Basınç": [{t:"Katı Basıncı", d:"Kuvvetle doğru, alanla ters orantılı.", f:"P = F / S"}] },
+                "İnkılap Tarihi": { "Milli Uyanış": [{t:"Mondros", d:"30 Ekim 1918'de imzalandı, işgallere yol açtı."}, {t:"Cemiyetler", d:"Yararlı ve Zararlı olarak ikiye ayrılır."}] }
             },
             9: {
-                "Fizik": {
-                    "Madde ve Özellikleri": [
-                        {t:"Özkütle", d:"Birim hacimdeki kütledir.", f:"d = m / V"},
-                        {t:"Dayanıklılık", d:"Katıların dış kuvvetlere karşı direnci.", f:"D ∝ Kesit Alanı / Hacim"}
-                    ]
-                },
-                "Matematik": {
-                    "Mantık": [
-                        {t:"Veya (∨)", d:"En az biri doğruysa doğrudur."},
-                        {t:"Ve (∧)", d:"İkisi de doğruysa doğrudur."}
-                    ]
-                }
+                "Matematik": { "Mantık": [{t:"Önerme", d:"Hüküm bildiren cümleler."}, {t:"De Morgan", d:"(p∧q)' ≡ p'∨q'"}], "Kümeler": [{t:"Alt Küme", d:"Formül: 2^n"}] },
+                "Fizik": { "Fizik Bilimine Giriş": [{t:"Alt Dallar", d:"Mekanik, Optik, Termodinamik vb."}, {t:"Büyüklükler", d:"Kısa Muz (Temel Büyüklükler)."}], "Madde": [{t:"Özkütle", d:"Birim hacimdeki kütle.", f:"d = m / V"}] },
+                "Kimya": { "Kimya Bilimi": [{t:"Semboller", d:"H: Hidrojen, He: Helyum."}, {t:"Güvenlik", d:"Yanıcı, Yakıcı, Korozif işaretler."}], "Atom": [{t:"Modeller", d:"Dalton, Thomson, Bohr."}] },
+                "Biyoloji": { "Canlıların Özellikleri": [{t:"Homeostazi", d:"İç denge."}, {t:"Metabolizma", d:"Anabolizma + Katabolizma."}], "Hücre": [{t:"Organeller", d:"Ribozom (Protein), Mitokondri (ATP)."}] },
+                "Coğrafya": { "Doğa ve İnsan": [{t:"Alt Dallar", d:"Jeomorfoloji, Hidrografya, Klimatoloji."}, {t:"Dünya'nın Şekli", d:"Geoit şekil ve sonuçları."}] },
+                "Tarih": { "Tarih Bilimi": [{t:"Kaynaklar", d:"Yazılı, sözlü, görsel kaynaklar."}, {t:"Zaman", d:"Takvim sistemleri (Hicri, Miladi)."}] }
             },
             12: {
-                "Matematik (AYT)": {
-                    "Logaritma": [
-                        {t:"Tanım", d:"Üslü sayının tersidir. Taban pozitif ve 1'den farklı olmalıdır.", f:"y = a^x  =>  x = log_a(y)"},
-                        {t:"Özellik: Toplam", d:"Logaritma içinde çarpım, dışarıda toplamaya dönüşür.", f:"log(a.b) = log a + log b"},
-                        {t:"Taban Değiştirme", d:"İstenilen tabanda yazılabilir.", f:"log_a(b) = log_c(b) / log_c(a)"}
-                    ],
-                    "Diziler": [
-                        {t:"Aritmetik Dizi", d:"Ardışık terimler arasındaki fark (r) sabittir.", f:"a_n = a_1 + (n-1).r"},
-                        {t:"Geometrik Dizi", d:"Ardışık terimler arasındaki oran (q) sabittir.", f:"a_n = a_1 . q^(n-1)"}
-                    ]
-                },
-                "Biyoloji (AYT)": {
-                    "Genden Proteine": [
-                        {t:"Replikasyon", d:"DNA'nın kendini yarı korunumlu olarak eşlemesidir."},
-                        {t:"Transkripsiyon", d:"DNA'dan mRNA sentezlenmesidir."},
-                        {t:"Translasyon", d:"Ribozomda proteinin sentezlenmesidir."},
-                        {t:"Kod ve Kodon", d:"DNA'daki 3'lü şifre (Kod), mRNA'daki 3'lü şifre (Kodon)."}
-                    ]
-                },
-                "Fizik (AYT)": {
-                    "Çembersel Hareket": [
-                        {t:"Periyot ve Frekans", d:"Tam tur süresi (T) ve saniyedeki tur sayısı (f).", f:"T . f = 1"},
-                        {t:"Merkezcil Kuvvet", d:"Yörüngenin merkezine doğru olan kuvvettir.", f:"F = m.v² / r"},
-                        {t:"Açısal Hız", d:"Birim zamandaki tarama açısıdır.", f:"ω = 2π / T"}
-                    ]
-                }
+                "Matematik (AYT)": { "Logaritma": [{t:"Taban", d:"Pozitif ve 1'den farklı olmalı.", f:"log_a(x)"}], "Diziler": [{t:"Aritmetik", d:"Fark sabittir.", f:"an = a1 + (n-1)r"}] },
+                "Fizik (AYT)": { "Çembersel Hareket": [{t:"Merkezcil Kuvvet", d:"Yörünge merkezine doğrudur.", f:"F = mv²/r"}], "Modern Fizik": [{t:"Fotoelektrik", d:"Işığın tanecik modeli."}] },
+                "Edebiyat (YKS)": { "Cumhuriyet Dönemi": [{t:"Şiir Toplulukları", d:"Garipçiler, İkinci Yeni, Yedi Meşaleciler."}, {t:"Roman", d:"Toplumcu gerçekçi, Bireyin iç dünyası."}] }
             }
         };
 
-        // --- NAVIGATION LOGIC ---
         function showSection(s) {
             document.getElementById('home-section').classList.toggle('hidden', s !== 'home');
             document.getElementById('lessons-section').classList.toggle('hidden', s !== 'lessons');
-            closeNav();
-            if(s === 'lessons') resetToGrade();
+            closeNav(); if(s === 'lessons') resetToGrade();
         }
 
         function navToSubject(grade) {
-            selGrade = grade;
-            step = 'subject';
+            selGrade = grade; step = 'subject';
             renderButtons('subject-div', Object.keys(db[grade] || {}), navToTopic);
-            updateUI(grade + ". Sınıf - Ders Seçiniz");
+            updateUI(grade + ". Sınıf - Ders Seç");
         }
 
-        function navToTopic(subject) {
-            selSub = subject;
-            step = 'topic';
-            renderButtons('topic-div', Object.keys(db[selGrade][subject]), showFlashcards);
-            updateUI(subject + " - Konu Seçiniz");
+        function navToTopic(sub) {
+            selSub = sub; step = 'topic';
+            renderButtons('topic-div', Object.keys(db[selGrade][sub]), showFlashcards);
+            updateUI(sub + " - Ünite Seç");
         }
 
         function showFlashcards(topic) {
@@ -257,37 +195,22 @@
             const div = document.getElementById('flashcard-div');
             div.innerHTML = '';
             cards.forEach(c => {
-                div.innerHTML += `
-                    <div class="flashcard">
-                        <h4>📌 ${c.t}</h4>
-                        <p>${c.d}</p>
-                        ${c.f ? `<span class="formula">${c.f}</span>` : ''}
-                    </div>`;
+                div.innerHTML += `<div class="flashcard"><h4>📌 ${c.t}</h4><p>${c.d}</p>${c.f ? `<span class="formula">${c.f}</span>`:''}</div>`;
             });
             ['grade-div', 'subject-div', 'topic-div'].forEach(id => document.getElementById(id).classList.add('hidden'));
-            div.classList.remove('hidden');
-            updateUI(topic + " Notları");
+            div.classList.remove('hidden'); updateUI(topic + " Notları");
         }
 
-        function renderButtons(targetId, list, callback) {
-            const container = document.getElementById(targetId);
-            container.innerHTML = '';
-            list.forEach(item => {
-                let btn = document.createElement('button');
-                btn.className = 'nav-btn';
-                btn.innerText = item;
-                btn.onclick = () => callback(item);
-                container.appendChild(btn);
+        function renderButtons(tid, list, cb) {
+            const container = document.getElementById(tid); container.innerHTML = '';
+            list.forEach(i => {
+                let b = document.createElement('button'); b.className = 'nav-btn'; b.innerText = i; b.onclick = () => cb(i);
+                container.appendChild(b);
             });
-            ['grade-div', 'subject-div', 'topic-div', 'flashcard-div'].forEach(id => {
-                document.getElementById(id).classList.toggle('hidden', id !== targetId);
-            });
+            ['grade-div', 'subject-div', 'topic-div', 'flashcard-div'].forEach(id => document.getElementById(id).classList.toggle('hidden', id !== tid));
         }
 
-        function updateUI(title) {
-            document.getElementById('view-title').innerText = title;
-            document.getElementById('back-btn').classList.remove('hidden');
-        }
+        function updateUI(t) { document.getElementById('view-title').innerText = t; document.getElementById('back-btn').classList.remove('hidden'); }
 
         function goBack() {
             if(step === 'cards') navToTopic(selSub);
@@ -296,8 +219,7 @@
         }
 
         function resetToGrade() {
-            step = 'grade';
-            document.getElementById('grade-div').classList.remove('hidden');
+            step = 'grade'; document.getElementById('grade-div').classList.remove('hidden');
             ['subject-div', 'topic-div', 'flashcard-div', 'back-btn'].forEach(id => document.getElementById(id).classList.add('hidden'));
             document.getElementById('view-title').innerText = "Sınıf Seçiniz";
         }
