@@ -7,7 +7,7 @@
     <style>
         :root {
             --bg-color: #f4f4f9;
-            --text-color: #333;
+            --text-color: #1e293b;
             --accent-color: #2563eb;
             --card-bg: #ffffff;
             --header-bg: #1e293b;
@@ -89,21 +89,12 @@
             cursor: pointer;
         }
 
-        .sidenav a:hover {
-            color: white;
-            background-color: rgba(255,255,255,0.1);
-        }
-
-        .sidenav .closebtn {
-            position: absolute;
-            top: 0;
-            left: 25px;
-            font-size: 36px;
-        }
+        .sidenav a:hover { color: white; background-color: rgba(255,255,255,0.1); }
+        .sidenav .closebtn { position: absolute; top: 0; left: 25px; font-size: 36px; }
 
         /* --- Main Content --- */
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: -40px auto 50px;
             padding: 0 20px;
         }
@@ -112,16 +103,16 @@
             background: var(--card-bg);
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             margin-bottom: 20px;
         }
 
         .hidden { display: none; }
 
-        /* --- Flashcards & Buttons --- */
+        /* --- Grid & Buttons --- */
         .btn-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
             margin-top: 20px;
         }
@@ -134,33 +125,48 @@
             border-radius: 8px;
             cursor: pointer;
             font-size: 1rem;
+            font-weight: bold;
             transition: 0.2s;
         }
 
-        .nav-btn:hover { transform: translateY(-3px); opacity: 0.9; }
+        .nav-btn:hover { transform: scale(1.02); opacity: 0.9; }
 
+        /* --- Flashcards --- */
         .flashcard {
             background: #fff;
-            border-left: 5px solid var(--accent-color);
+            border-left: 6px solid var(--accent-color);
             padding: 20px;
-            margin: 15px 0;
+            margin: 20px 0;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: 0.3s;
         }
 
-        .flashcard h4 { margin: 0 0 10px 0; color: var(--accent-color); }
+        .flashcard:hover { transform: translateX(5px); }
+        .flashcard h4 { margin: 0 0 10px 0; color: #1e40af; font-size: 1.1rem; }
+        .flashcard p { margin: 0; white-space: pre-line; }
+        .formula {
+            display: block;
+            background: #f1f5f9;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            margin-top: 10px;
+            color: #dc2626;
+            font-weight: bold;
+        }
 
-        /* --- Log Modal (Previous logic kept) --- */
-        .modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); }
-        .modal-content { background: white; margin: 10% auto; padding: 25px; width: 80%; max-width: 600px; border-radius: 10px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { border-bottom: 1px solid #ddd; padding: 10px; text-align: left; }
+        /* --- Modals --- */
+        .modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); }
+        .modal-content { background: white; margin: 5% auto; padding: 25px; width: 85%; max-width: 800px; border-radius: 10px; max-height: 80vh; overflow-y: auto; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border-bottom: 1px solid #ddd; padding: 12px; text-align: left; }
     </style>
 </head>
 <body>
 
     <div class="top-controls">
-        <span class="version-tag">v1.1.0</span>
+        <span class="version-tag">v1.2.0</span>
         <div class="menu-icon" onclick="openNav()">&#9776;</div>
     </div>
 
@@ -180,8 +186,8 @@
         
         <div id="home-section">
             <div class="card">
-                <h2>Hakkımda</h2>
-                <p>Merhaba! Ben Ata. 2011 doğumluyum. Kod yazmayı ve kendi oyunlarımı geliştirmeyi çok seviyorum. Bu site benim hem projelerimi paylaştığım hem de ders notlarımı tuttuğum kişisel alanım.</p>
+                <h2>Hoş Geldin!</h2>
+                <p>Ben Ata. 2011 doğumluyum. Video oyunları oynamayı, oyun mekanikleri üzerine düşünmeyi ve kod yazarak yeni şeyler üretmeyi seviyorum. Bu site benim dijital kütüphanem.</p>
             </div>
         </div>
 
@@ -190,37 +196,85 @@
                 <h2 id="lesson-title">Sınıf Seçiniz</h2>
                 <div id="grade-selection" class="btn-grid">
                     <button class="nav-btn" onclick="selectGrade(7)">7. Sınıf</button>
-                    <button class="nav-btn" onclick="selectGrade(8)">8. Sınıf</button>
-                    <button class="nav-btn" onclick="selectGrade(9)">9. Sınıf</button>
+                    <button class="nav-btn" onclick="selectGrade(8)">8. Sınıf (LGS)</button>
+                    <button class="nav-btn" onclick="selectGrade(9)">9. Sınıf (Lise)</button>
                 </div>
 
-                <div id="subject-selection" class="btn-grid hidden">
-                    </div>
-
-                <div id="notes-display" class="hidden">
-                    </div>
+                <div id="subject-selection" class="btn-grid hidden"></div>
+                <div id="notes-display" class="hidden"></div>
                 
-                <button id="back-btn" class="nav-btn hidden" style="margin-top:20px; background:#64748b;" onclick="resetLessons()">⬅ Geri Dön</button>
+                <button id="back-btn" class="nav-btn hidden" style="margin-top:20px; background:#64748b;" onclick="goBack()">⬅ Geri Dön</button>
             </div>
         </div>
-
     </div>
 
     <div id="logModal" class="modal">
         <div class="modal-content">
-            <span style="float:right; cursor:pointer; font-size:24px" onclick="closeLogModal()">&times;</span>
-            <h2>Sürüm Logları</h2>
+            <span style="float:right; cursor:pointer; font-size:30px" onclick="closeLogModal()">&times;</span>
+            <h2>Versiyon Günlükleri</h2>
             <table>
                 <tr><th>Versiyon</th><th>Eski</th><th>Yeni</th></tr>
-                <tr><td>v1.1.0</td><td>Düz Site</td><td>Hamburger Menü + Ders Notları (Flashcard) eklendi.</td></tr>
-                <tr><td>v1.0.0</td><td>Yok</td><td>İlk sürüm: Hakkımda sayfası oluşturuldu.</td></tr>
+                <tr><td>v1.2.0</td><td>Eksik Dersler</td><td>9. Sınıf eklendi, Fen branşlara ayrıldı, detaylı formüller ve özetler eklendi.</td></tr>
+                <tr><td>v1.1.0</td><td>Düz Tasarım</td><td>Hamburger menü ve ders notları altyapısı kuruldu.</td></tr>
+                <tr><td>v1.0.0</td><td>Yok</td><td>İlk sürüm: Hakkımda ve temel tasarım.</td></tr>
             </table>
         </div>
     </div>
 
     <script>
-        // NAVIGATION LOGIC
-        function openNav() { document.getElementById("mySidenav").style.width = "250px"; }
+        let currentStep = 'grade'; // grade, subject, notes
+        let selectedGrade = null;
+
+        const data = {
+            7: {
+                "Matematik": [
+                    { t: "Tam Sayılar", d: "Aynı işaretli sayıların çarpımı pozitif, zıt işaretlilerin negatiftir.", f: "(+) . (+) = (+)\n(+) . (-) = (-)" },
+                    { t: "Rasyonel Sayılar", d: "Paydaları eşitlemeden toplama/çıkarma yapılamaz.", f: "a/b + c/d (payda eşitle!)" }
+                ],
+                "Fen Bilimleri": [
+                    { t: "Hücre", d: "Canlının en küçük yapı birimidir. Hayvan hücresi yuvarlak, bitki hücresi köşelidir.", f: "Hücre -> Dokular -> Organlar -> Sistemler" },
+                    { t: "Kütle ve Ağırlık", d: "Kütle değişmez, ağırlık yerçekimine göre değişir.", f: "Ağırlık = Kütle x Yerçekimi" }
+                ],
+                "Türkçe": [
+                    { t: "Fiiller", d: "Anlamlarına göre fiiller: İş, Oluş ve Durum fiilleri olarak üçe ayrılır.", f: "Örn: Kırmak (İş), Sararmak (Oluş), Uyumak (Durum)" }
+                ]
+            },
+            8: {
+                "Matematik (LGS)": [
+                    { t: "Üslü İfadeler", d: "Tabanları aynı olan üslü ifadeler çarpılırken üstler toplanır.", f: "a^n . a^m = a^(n+m)" },
+                    { t: "Kareköklü İfadeler", d: "Tam kare sayılar kök dışına tam çıkar.", f: "√25 = 5, √144 = 12" }
+                ],
+                "Fen Bilimleri": [
+                    { t: "DNA ve Genetik Kod", d: "DNA hücrenin yönetici molekülüdür. Sarmal yapıdadır.", f: "Adenin - Timin\nGuanin - Sitozin" },
+                    { t: "Basınç", d: "Katı basıncı kuvvetle doğru, yüzey alanıyla ters orantılıdır.", f: "P = F / S" }
+                ],
+                "Türkçe": [
+                    { t: "Cümlenin Ögeleri", d: "Temel ögeler: Yüklem ve Özne.", f: "Yüklem (İş) + Özne (Yapan)" }
+                ]
+            },
+            9: {
+                "Matematik": [
+                    { t: "Mantık", d: "Önermeler doğru (1) veya yanlış (0) değer alabilir.", f: "p ∧ q (Ve), p ∨ q (Veya)" },
+                    { t: "Kümeler", d: "İyi tanımlanmış nesneler topluluğudur.", f: "A ∪ B (Birleşim), A ∩ B (Kesişim)" }
+                ],
+                "Fizik": [
+                    { t: "Fiziğin Doğası", d: "Madde ve enerji arasındaki etkileşimi inceler.", f: "Özkütle: d = m / V" },
+                    { t: "Hareket", d: "Alınan yolun zamana oranı sürati verir.", f: "Hız = Yer Değiştirme / Zaman" }
+                ],
+                "Kimya": [
+                    { t: "Kimya Bilimi", d: "Simyadan kimyaya geçiş süreci ve temel elementler.", f: "Elementler: H, He, Li, Be, B, C, N, O, F, Ne" },
+                    { t: "Atomun Yapısı", d: "Atom; proton, nötron ve elektrondan oluşur.", f: "Kütle No = Proton + Nötron" }
+                ],
+                "Biyoloji": [
+                    { t: "Yaşam Bilimi", d: "Canlıların ortak özellikleri: Beslenme, Solunum, Boşaltım...", f: "İnorganik ve Organik Bileşikler" }
+                ],
+                "Türkçe": [
+                    { t: "İletişim Ögeleri", d: "Gönderici, Alıcı, İleti, Kanal, Bağlam, Dönüt.", f: "Dilin İşlevleri: Göndergesel, Heyecana Bağlı..." }
+                ]
+            }
+        };
+
+        function openNav() { document.getElementById("mySidenav").style.width = "280px"; }
         function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
 
         function showSection(section) {
@@ -231,18 +285,14 @@
             if(section === 'lessons') resetLessons();
         }
 
-        // LESSONS DATA (Örnek Veri)
-        const data = {
-            7: { "Matematik": ["Tam Sayılar: (+) ile (-) çarpımı (-) eder.", "Rasyonel Sayılar: Paydalar eşitlenmeden toplama yapılmaz."], "Fen Bilimleri": ["Hücre: Canlıların en küçük yapı taşıdır.", "Mitoz Bölünme: Vücut hücrelerinde görülür."] },
-            8: { "LGS Fen": ["DNA ve Genetik Kod: Adenin karşısına Timin gelir.", "Basınç: Katı basıncı yüzey alanı ile ters orantılıdır."], "İnkılap": ["1. Dünya Savaşı: 1914-1918 yılları arasında yaşandı."] }
-        };
-
         function selectGrade(grade) {
+            selectedGrade = grade;
+            currentStep = 'subject';
             document.getElementById('grade-selection').classList.add('hidden');
             document.getElementById('subject-selection').classList.remove('hidden');
             document.getElementById('lesson-title').innerText = grade + ". Sınıf - Ders Seç";
             
-            const subjects = data[grade] || {};
+            const subjects = data[grade];
             const container = document.getElementById('subject-selection');
             container.innerHTML = '';
             
@@ -250,27 +300,45 @@
                 let btn = document.createElement('button');
                 btn.className = 'nav-btn';
                 btn.innerText = sub;
-                btn.onclick = () => showNotes(grade, sub);
+                btn.onclick = () => showNotes(sub);
                 container.appendChild(btn);
             });
             document.getElementById('back-btn').classList.remove('hidden');
         }
 
-        function showNotes(grade, subject) {
+        function showNotes(subject) {
+            currentStep = 'notes';
             document.getElementById('subject-selection').classList.add('hidden');
             document.getElementById('notes-display').classList.remove('hidden');
-            document.getElementById('lesson-title').innerText = subject + " Notları";
+            document.getElementById('lesson-title').innerText = subject + " Özetleri";
             
-            const notes = data[grade][subject];
+            const notes = data[selectedGrade][subject];
             const container = document.getElementById('notes-display');
             container.innerHTML = '';
             
-            notes.forEach(note => {
-                container.innerHTML += `<div class="flashcard"><h4>💡 Bilgi</h4><p>${note}</p></div>`;
+            notes.forEach(item => {
+                container.innerHTML += `
+                    <div class="flashcard">
+                        <h4>📌 ${item.t}</h4>
+                        <p>${item.d}</p>
+                        <span class="formula">${item.f}</span>
+                    </div>`;
             });
         }
 
+        function goBack() {
+            if (currentStep === 'notes') {
+                document.getElementById('notes-display').classList.add('hidden');
+                document.getElementById('subject-selection').classList.remove('hidden');
+                document.getElementById('lesson-title').innerText = selectedGrade + ". Sınıf - Ders Seç";
+                currentStep = 'subject';
+            } else if (currentStep === 'subject') {
+                resetLessons();
+            }
+        }
+
         function resetLessons() {
+            currentStep = 'grade';
             document.getElementById('grade-selection').classList.remove('hidden');
             document.getElementById('subject-selection').classList.add('hidden');
             document.getElementById('notes-display').classList.add('hidden');
@@ -278,7 +346,6 @@
             document.getElementById('lesson-title').innerText = "Sınıf Seçiniz";
         }
 
-        // MODAL LOGIC
         function openLogModal() { document.getElementById("logModal").style.display = "block"; closeNav(); }
         function closeLogModal() { document.getElementById("logModal").style.display = "none"; }
     </script>
